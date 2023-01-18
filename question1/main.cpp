@@ -54,7 +54,7 @@ void q2()
     double tauxMensuel = tauxAnnuel / 12;
 
     double sommeInteret = 0;
-    int    nMois       = 0;
+    int    nMois        = 0;
     while (sommeArgentEmprunte >= 0.01) {
         double interet = sommeArgentEmprunte * tauxMensuel / 100;
 
@@ -71,28 +71,41 @@ void q2()
 void q3()
 {
     double hauteurInitiale   = 0;
-    int    nbreDeRebonds     = 0;
+    int    nRebonds          = 0;
     double coefficientRebond = 0;
 
-    while (!valider(hauteurInitiale, 0, INFINITY)) {
-        cout << " hauteur initiale : ";
+    static const double constanteGravité = 9.81;
+
+    do {
+        cout << "Entrer la hauteur initiale : ";
         cin >> hauteurInitiale;
-    }
-    while (!valider(nbreDeRebonds, 0, INFINITY)) {
-        cout << " nmbre de rebonds : ";
-        cin >> nbreDeRebonds;
-    }
-    while (!valider(coefficientRebond, 0, 1)) {
-        cout << "coefficient rebond : ";
+    } while (!valider(hauteurInitiale, 0.0, INFINITY));
+    do {
+        cout << "Entrer le nombre de rebonds : ";
+        cin >> nRebonds;
+    } while (!valider(nRebonds, 0, INFINITY));
+    do {
+        cout << "Entrer le coefficient de rebond : ";
         cin >> coefficientRebond;
+    } while (!valider(coefficientRebond, 0.0, 1.1));
+
+    double hauteurActuelle = hauteurInitiale;
+
+    for (int i = 0; i < nRebonds; i++) {
+        double vitesseInitiale = sqrt(2 * constanteGravité * hauteurActuelle);
+        double vitesseActuelle = coefficientRebond * vitesseInitiale;
+        hauteurActuelle = pow(vitesseActuelle, 2.0) / (2 * constanteGravité);
     }
+
+    cout << "Hauteur de la balle après " << nRebonds
+         << " rebonds : " << hauteurActuelle << ".\n";
 }
 
 int main()
 {
-    q1();
+    // q1();
 
-    q2();
+    // q2();
 
     q3();
 
