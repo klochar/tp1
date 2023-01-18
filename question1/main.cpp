@@ -25,7 +25,7 @@ void q1()
     else {
         for (int i = 3; i <= sqrt(valeur); i += 2) {
             if (valeur % i == 0) {
-                cout << "ce nombre n est pas premier car il est divisible par "
+                cout << "ce nombre n'est pas premier car il est divisible par "
                      << i << '\n';
                 return;
             }
