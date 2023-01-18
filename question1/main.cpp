@@ -95,6 +95,8 @@ void q3() {
 		cin >> coefficientRebond;
 	}
 
+	
+
 
 }
 
