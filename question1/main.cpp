@@ -39,34 +39,32 @@ void q2()
     double tauxAnnuel              = -1;
 
     while (!valider(sommeArgentEmprunte, 0.0, INFINITY)) {
-        cout << "La somme d argent emprunte : ";
+        cout << "Entrer la somme d'argent empruntée : ";
         cin >> sommeArgentEmprunte;
     }
     while (!valider(montantRembourseParMois, 0.0, INFINITY)) {
-        cout << "montant rembourse chaque mois : ";
+        cout << "Entrer le montant remboursé chaque mois : ";
         cin >> montantRembourseParMois;
     }
     while (!valider(tauxAnnuel, 0.0, 100.0)) {
-        cout
-            << "taux annuel : "; // sachant que le taux mensuel --> tauxAnuel/12
+        cout << "Entrer le taux d'intérêt annuel : ";
         cin >> tauxAnnuel;
     }
 
     double tauxMensuel = tauxAnnuel / 12;
 
     double sommeInteret = 0;
-    int    nbMois       = 0;
-
+    int    nMois       = 0;
     while (sommeArgentEmprunte >= 0.01) {
         double interet = sommeArgentEmprunte * tauxMensuel / 100;
 
         sommeInteret += interet;
         sommeArgentEmprunte += interet - montantRembourseParMois;
 
-        nbMois++;
+        nMois++;
     }
     cout << "la somme d'intérêts payés au total : " << sommeInteret << '\n'
-         << "vous allez payer le montant total avec interet en " << nbMois
+         << "vous allez payer le montant total avec interet en " << nMois
          << " mois \n";
 }
 
