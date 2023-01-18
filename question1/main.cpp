@@ -10,27 +10,25 @@ void q1()
     int valeur = 0;
 
     do {
-        cout << "entrez la valeur : ";
+        cout << "Entrer un nombre entier : ";
         cin >> valeur;
     } while (!valider(valeur, 0, INFINITY));
 
     if (valeur == 2) {
-        cout << "ce nombre est premier\n";
+        cout << "Ce nombre est premier.\n";
     }
     else if (valeur % 2 == 0) {
-        cout << "ce nombre n est pas premier car il est divisible par "
-             << "2"
-             << "\n";
+        cout << "Ce nombre n'est pas premier car il est divisible par 2.\n";
     }
     else {
         for (int i = 3; i <= sqrt(valeur); i += 2) {
             if (valeur % i == 0) {
-                cout << "ce nombre n est pas premier car il est divisible par "
-                     << i << '\n';
+                cout << "Ce nombre n'est pas premier car il est divisible par "
+                     << i << ".\n";
                 return;
             }
         }
-        cout << "ce nombre est premier\n";
+        cout << "Ce nombre est premier.\n";
     }
 }
 
