@@ -1,5 +1,7 @@
 #include <cmath>
+#include <iomanip>
 #include <iostream>
+#include <random>
 
 using namespace std;
 
@@ -101,13 +103,58 @@ void q3()
          << " rebonds : " << hauteurActuelle << ".\n";
 }
 
+void q4()
+{
+    default_random_engine             aléatoire(random_device{}());
+    uniform_real_distribution<double> distribution(-1.0, 1.0);
+
+    int nIterations = 0;
+    do {
+        cout << "Entrer le nombre d'itérations: ";
+        cin >> nIterations;
+    } while (!valider(nIterations, 0, INFINITY));
+
+    int nDansCercle = 0;
+
+    for (int i = 0; i < nIterations; i++) {
+        const double x = distribution(aléatoire);
+        const double y = distribution(aléatoire);
+
+        if (x * x + y * y < 1.0) {
+            nDansCercle++;
+        }
+    }
+
+    const double        piCalculé = 4.0 * nDansCercle / nIterations;
+    static const double piRéel    = 3.141593;
+
+    cout << "Valeur de pi calculée: " << fixed << setprecision(6) << piCalculé
+         << '\n'
+         << "Écart relatif avec la valeur réelle de pi: " << fixed
+         << setprecision(6) << fabs(piCalculé - piRéel) << '\n';
+}
+
+void q5()
+{
+}
+
+void q6()
+{
+}
+
 int main()
 {
     // q1();
 
     // q2();
 
-    q3();
+    // q3();
+
+    q4();
+
+    // q5();
+
+    // q6();
 
     return 0;
 }
