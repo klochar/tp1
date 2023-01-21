@@ -1,3 +1,4 @@
+#include <array>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -5,7 +6,11 @@
 
 using namespace std;
 
-bool valider(double, double, double);
+static const int TAILLE = 10;
+
+bool               valider(double, double, double);
+array<int, TAILLE> trierTableau(array<int, TAILLE>);
+void               afficherTableau(array<int, TAILLE>);
 
 void q1()
 {
@@ -136,6 +141,18 @@ void q4()
 
 void q5()
 {
+    array<int, TAILLE> tableau = {};
+
+    cout << "Entrer les éléments du tableau.\n";
+    for (int i = 0; i < TAILLE; i++) {
+        cout << "Élément " << i + 1 << ": ";
+        cin >> tableau[i];
+    }
+
+    array<int, TAILLE> tableauTrié = trierTableau(tableau);
+
+    cout << "Tableau résultant: ";
+    afficherTableau(tableauTrié);
 }
 
 void q6()
@@ -150,9 +167,9 @@ int main()
 
     // q3();
 
-    q4();
+    // q4();
 
-    // q5();
+    q5();
 
     // q6();
 
@@ -167,4 +184,38 @@ bool valider(double valeur, double min, double max)
     else {
         return false;
     }
+}
+
+array<int, TAILLE> trierTableau(array<int, TAILLE> tableau)
+{
+    array<int, TAILLE> tableauTrié = {};
+    int                nTriés      = 0;
+
+    for (int i = 0; i < TAILLE; i++) {
+        if (tableau[i] % 2 == 0) {
+            tableauTrié[nTriés++] = tableau[i];
+        }
+    }
+    for (int i = 0; i < TAILLE; i++) {
+        if (tableau[i] % 2 != 0) {
+            tableauTrié[nTriés++] = tableau[i];
+        }
+    }
+
+    return tableauTrié;
+}
+
+void afficherTableau(array<int, TAILLE> tableau)
+{
+    cout << '{';
+
+    for (int i = 0; i < TAILLE; i++) {
+        cout << tableau[i];
+
+        if (i != TAILLE - 1) {
+            cout << ", ";
+        }
+    }
+
+    cout << "}\n";
 }
