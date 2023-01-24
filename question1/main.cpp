@@ -47,15 +47,15 @@ void q2()
     double tauxAnnuel              = -1;
 
     while (!valider(sommeArgentEmprunte, 0.0, INFINITY)) {
-        cout << "Entrer la somme d'argent empruntée : ";
+        cout << "Entrer la somme d'argent empruntee : ";
         cin >> sommeArgentEmprunte;
     }
     while (!valider(montantRembourseParMois, 0.0, INFINITY)) {
-        cout << "Entrer le montant remboursé chaque mois : ";
+        cout << "Entrer le montant rembourse chaque mois : ";
         cin >> montantRembourseParMois;
     }
     while (!valider(tauxAnnuel, 0.0, 100.0)) {
-        cout << "Entrer le taux d'intérêt annuel : ";
+        cout << "Entrer le taux d'interêt annuel : ";
         cin >> tauxAnnuel;
     }
 
@@ -71,7 +71,7 @@ void q2()
 
         nMois++;
     }
-    cout << "la somme d'intérêts payés au total : " << sommeInteret << '\n'
+    cout << "la somme d'interêts payes au total : " << sommeInteret << '\n'
          << "vous allez payer le montant total avec interet en " << nMois
          << " mois \n";
 }
@@ -111,49 +111,49 @@ void q3()
 
 void q4()
 {
-    default_random_engine             aléatoire(random_device{}());
+    default_random_engine             aleatoire(random_device{}());
     uniform_real_distribution<double> distribution(-1.0, 1.0);
 
     int nIterations = 0;
     do {
-        cout << "Entrer le nombre d'itérations: ";
+        cout << "Entrer le nombre d'iterations: ";
         cin >> nIterations;
     } while (!valider(nIterations, 0, INFINITY));
 
     int nDansCercle = 0;
 
     for (int i = 0; i < nIterations; i++) {
-        const double x = distribution(aléatoire);
-        const double y = distribution(aléatoire);
+        const double x = distribution(aleatoire);
+        const double y = distribution(aleatoire);
 
         if (x * x + y * y < 1.0) {
             nDansCercle++;
         }
     }
 
-    const double        piCalculé = 4.0 * nDansCercle / nIterations;
-    static const double piRéel    = 3.141593;
+    const double        piCalcule = 4.0 * nDansCercle / nIterations;
+    static const double piReel    = 3.141593;
 
-    cout << "Valeur de pi calculée: " << fixed << setprecision(6) << piCalculé
+    cout << "Valeur de pi calculee: " << fixed << setprecision(6) << piCalcule
          << '\n'
-         << "Écart relatif avec la valeur réelle de pi: " << fixed
-         << setprecision(6) << fabs(piCalculé - piRéel) << '\n';
+         << "ecart relatif avec la valeur reelle de pi: " << fixed
+         << setprecision(6) << fabs(piCalcule - piReel) << '\n';
 }
 
 void q5()
 {
     array<int, TAILLE> tableau = {};
 
-    cout << "Entrer les éléments du tableau.\n";
+    cout << "Entrer les elements du tableau.\n";
     for (int i = 0; i < TAILLE; i++) {
-        cout << "Élément " << i + 1 << ": ";
+        cout << "element " << i + 1 << ": ";
         cin >> tableau[i];
     }
 
-    array<int, TAILLE> tableauTrié = trierTableau(tableau);
+    array<int, TAILLE> tableauTrie = trierTableau(tableau);
 
-    cout << "Tableau résultant: ";
-    afficherTableau(tableauTrié);
+    cout << "Tableau resultant: ";
+    afficherTableau(tableauTrie);
 }
 
 void q6()
@@ -195,22 +195,21 @@ bool valider(double valeur, double min, double max)
 
 array<int, TAILLE> trierTableau(array<int, TAILLE> tableau)
 {
-    array<int, TAILLE> tableauTrié = {};
-    int                nTriés      = 0;
+    array<int, TAILLE> tableauTrie = {};
+    int                nTries      = 0;
 
     for (int i = 0; i < TAILLE; i++) {
         if (tableau[i] % 2 == 0) {
-            tableauTrié[nTriés++] = tableau[i];
-            
+            tableauTrie[nTries++] = tableau[i];
         }
     }
     for (int i = 0; i < TAILLE; i++) {
         if (tableau[i] % 2 != 0) {
-            tableauTrié[nTriés++] = tableau[i];
+            tableauTrie[nTries++] = tableau[i];
         }
     }
 
-    return tableauTrié;
+    return tableauTrie;
 }
 
 void afficherTableau(array<int, TAILLE> tableau)
