@@ -1,6 +1,7 @@
 #include <array>
 #include <cmath>
 #include <iomanip>
+#include <fstream>
 #include <iostream>
 #include <random>
 
@@ -81,7 +82,7 @@ void q3()
     int    nRebonds          = 0;
     double coefficientRebond = 0;
 
-    static const double constanteGravité = 9.81;
+    static const double constanteGravite = 9.81;
 
     do {
         cout << "Entrer la hauteur initiale : ";
@@ -99,9 +100,9 @@ void q3()
     double hauteurActuelle = hauteurInitiale;
 
     for (int i = 0; i < nRebonds; i++) {
-        double vitesseInitiale = sqrt(2 * constanteGravité * hauteurActuelle);
+        double vitesseInitiale = sqrt(2 * constanteGravite * hauteurActuelle);
         double vitesseActuelle = coefficientRebond * vitesseInitiale;
-        hauteurActuelle = pow(vitesseActuelle, 2.0) / (2 * constanteGravité);
+        hauteurActuelle = pow(vitesseActuelle, 2.0) / (2 * constanteGravite);
     }
 
     cout << "Hauteur de la balle après " << nRebonds
@@ -157,6 +158,12 @@ void q5()
 
 void q6()
 {
+    string a = "";
+    ifstream fichier("dictionnaire.txt");
+    getline(fichier, a);
+
+
+
 }
 
 int main()
@@ -169,9 +176,9 @@ int main()
 
     // q4();
 
-    q5();
+    //q5();
 
-    // q6();
+    q6();
 
     return 0;
 }
@@ -194,6 +201,7 @@ array<int, TAILLE> trierTableau(array<int, TAILLE> tableau)
     for (int i = 0; i < TAILLE; i++) {
         if (tableau[i] % 2 == 0) {
             tableauTrié[nTriés++] = tableau[i];
+            
         }
     }
     for (int i = 0; i < TAILLE; i++) {
