@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <random>
+#include <string>
 
 using namespace std;
 
@@ -156,13 +157,54 @@ void q5()
     afficherTableau(tableauTrie);
 }
 
+
+struct Mot {
+    string mot = "";
+    string nature="";
+    string definition="";
+
+
+
+} ;
+
+
 void q6()
 {
-    string a = "";
+
+    string ligne = "";
     ifstream fichier("dictionnaire.txt");
-    getline(fichier, a);
+    
+    Mot tab [4];
 
+    for (int i = 0; i < 4; i++) {//row
+        getline(fichier,ligne);
+        int index = ligne.find("\t");
+        string mot = ligne.substr(0, index);
 
+        int indexPremiereTabulation = ligne.find("\t",index+1);
+        string nature = ligne.substr(index+1, (indexPremiereTabulation-index)-1);
+       
+
+        int indexDeuxiemeTabulation = ligne.size() - indexPremiereTabulation;
+        string definition = ligne.substr(indexPremiereTabulation+1,indexDeuxiemeTabulation);
+
+        tab[i].mot = mot;
+        tab[i].nature = nature;
+        tab[i].definition = definition;
+    }
+
+    cout << endl;
+
+    int index = 0;
+
+    for (int i = 0; i < 4; i++) {
+        string nom = tab[i].mot;
+        if (nom.size() > tab[index].mot.size()) {
+            index = i;
+        }
+    }
+
+    cout << tab[index].mot << " ("<<tab[index].nature << ") " << ": " << tab[index].definition << endl;
 
 }
 
