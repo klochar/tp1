@@ -1,7 +1,7 @@
 #include <array>
 #include <cmath>
-#include <iomanip>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <random>
 #include <string>
@@ -157,39 +157,37 @@ void q5()
     afficherTableau(tableauTrie);
 }
 
-
-struct Mot {
-    string mot = "";
-    string nature="";
-    string definition="";
-
-
-
-} ;
-
+struct Mot
+{
+    string mot        = "";
+    string nature     = "";
+    string definition = "";
+};
 
 void q6()
 {
-
-    string ligne = "";
+    string   ligne = "";
     ifstream fichier("dictionnaire.txt");
-    
-    Mot tab [4];
 
-    for (int i = 0; i < 4; i++) {//row
-        getline(fichier,ligne);
-        int index = ligne.find("\t");
-        string mot = ligne.substr(0, index);
+    Mot tab[4];
 
-        int indexPremiereTabulation = ligne.find("\t",index+1);
-        string nature = ligne.substr(index+1, (indexPremiereTabulation-index)-1);
-       
+    for (int i = 0; i < 4; i++) {
+        getline(fichier, ligne);
+        int    indexPremiereTabulation = ligne.find("\t");
+        string mot = ligne.substr(0, indexPremiereTabulation);
 
-        int indexDeuxiemeTabulation = ligne.size() - indexPremiereTabulation;
-        string definition = ligne.substr(indexPremiereTabulation+1,indexDeuxiemeTabulation);
+        int indexDeuxiemeTabulation =
+            ligne.find("\t", indexPremiereTabulation + 1);
+        string nature = ligne.substr(
+            indexPremiereTabulation + 1,
+            (indexDeuxiemeTabulation - indexPremiereTabulation) - 1);
 
-        tab[i].mot = mot;
-        tab[i].nature = nature;
+        int    longueurDefinition = ligne.size() - indexDeuxiemeTabulation;
+        string definition =
+            ligne.substr(indexDeuxiemeTabulation + 1, longueurDefinition);
+
+        tab[i].mot        = mot;
+        tab[i].nature     = nature;
         tab[i].definition = definition;
     }
 
@@ -204,21 +202,21 @@ void q6()
         }
     }
 
-    cout << tab[index].mot << " ("<<tab[index].nature << ") " << ": " << tab[index].definition << endl;
-
+    cout << tab[index].mot << " (" << tab[index].nature
+         << ") : " << tab[index].definition << '\n';
 }
 
 int main()
 {
-    // q1();
+    q1();
 
-    // q2();
+    q2();
 
-    // q3();
+    q3();
 
-    // q4();
+    q4();
 
-    //q5();
+    q5();
 
     q6();
 
